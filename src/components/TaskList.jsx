@@ -1,8 +1,18 @@
-import React from 'react';
+import { useState } from 'react'
 import Todo from "./Todo";
 
-const TaskList = (props) => {
-   
+const TaskList = ({currentTasks}) => {
+    const [tasks, setTasks] = useState(currentTasks);
+
+    const taskList = tasks.map(task => (
+        <Todo
+          id={task.id}
+          name={task.name}
+          completed={task.completed}
+          key={task.id}
+        />
+      ));
+
     return <>
         <h2>Tasks: </h2>
         <ul
@@ -10,8 +20,7 @@ const TaskList = (props) => {
             className="todo-list stack-large stack-exception"
             aria-labelledby="list-heading"
         >
-            <Todo task="Eat" id="100" completed />
-            <Todo task="Sleep" id="200" />
+            {taskList}
         </ul>
     </>
 }
