@@ -1,10 +1,13 @@
-import { useState } from 'react'
 import Todo from "./Todo";
+import TaskTracker from "./TaskTracker";
 
 const TaskList = ({currentTasks}) => {
-    const [tasks, setTasks] = useState(currentTasks);
+    if (currentTasks.length === 0) {
+        return <h2> Start adding new tasks! </h2>
+    }
 
-    const taskList = tasks.map(task => (
+    console.log(currentTasks);
+    const taskList = currentTasks.map(task => (
         <Todo
           id={task.id}
           name={task.name}
@@ -12,9 +15,9 @@ const TaskList = ({currentTasks}) => {
           key={task.id}
         />
       ));
-
+      
     return <>
-        <h2>Tasks: </h2>
+        <TaskTracker currentTasks={currentTasks} />
         <ul
             role="list"
             className="todo-list stack-large stack-exception"

@@ -1,4 +1,4 @@
-const TaskTracker = () => {
+const TaskTracker = ({currentTasks}) => {
     return <>
       <div className="filters btn-group stack-exception">
         <button type="button" className="btn toggle-btn" aria-pressed="true">
@@ -17,7 +17,7 @@ const TaskTracker = () => {
           <span className="visually-hidden"> tasks</span>
         </button>
     </div>
-    <h2 id="list-heading">3 tasks remaining</h2>
+    <h2 id="list-heading">{currentTasks.filter(item => item.completed === false).length} tasks remaining</h2>
   </>
 }
 
